@@ -8,7 +8,7 @@ pipeline {
                     sh """
                         docker build -t neatphar/nodejs-app .
                         docker login -u ${USERNAME} -p ${PASSWORD}
-                        docker push
+                        docker push neatphar/nodejs-app
                     """
                 }
             }
