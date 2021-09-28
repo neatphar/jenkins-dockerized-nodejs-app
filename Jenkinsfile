@@ -1,5 +1,6 @@
 node {
     stage('CI') {
+        sh "ls"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh 'docker build -t neatphar/nodejs-app .'
             sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
