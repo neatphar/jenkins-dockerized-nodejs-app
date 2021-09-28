@@ -3,7 +3,7 @@ node {
         sh "git init"
         sh "git remote set-url origin https://github.com/neatphar/jenkins-dockerized-nodejs-app.git 2>> /dev/null"
         sh "git fetch"
-        sh "git checkout origin/scripted -ft"
+        sh "git checkout scripted"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh 'docker build -t neatphar/nodejs-app .'
             sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
