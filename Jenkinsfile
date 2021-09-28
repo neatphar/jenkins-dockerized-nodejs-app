@@ -5,11 +5,12 @@ pipeline {
         stage('CI') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh """
-                    docker build -t neatphar/nodejs-app .
-                    docker login -u ${USERNAME} -p ${PASSWORD}
-                    docker push
-                """
+                    sh """
+                        docker build -t neatphar/nodejs-app .
+                        docker login -u ${USERNAME} -p ${PASSWORD}
+                        docker push
+                    """
+                }
             }
         }
         stage('CD') {
