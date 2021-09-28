@@ -5,6 +5,7 @@ pipeline {
         stage('CI') {
             steps {
                 sh "ls"
+                sh "echo 'hi';"
                 // Get some code from a GitHub repository
                 // git 'https://github.com/jglick/simple-maven-project-with-tests.git'
 
