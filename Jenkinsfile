@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('CI') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                         docker build -t neatphar/nodejs-app .
                         docker login -u ${USERNAME} -p ${PASSWORD}
