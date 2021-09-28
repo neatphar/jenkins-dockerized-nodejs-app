@@ -8,6 +8,6 @@ node {
     }
     stage('CD') {
         sh 'docker rm --force NodeJsApp 2>> /dev/null'
-        sh 'docker run --name NodeJsApp -d -p 3000:3000 neatphar/nodejs-app'
+        sh 'docker run --name NodeJsApp -d -p 4000:4000 neatphar/nodejs-app'
     }
 }
