@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh """
                     docker rm --force NodeJsApp 2>> /dev/null 
-                    docker run --name NodeJsApp -d -p 3030:3030 neatphar/nodejs-app
+                    docker run --name NodeJsApp -d -p 3000:3000 neatphar/nodejs-app
                 """
             }
         }
