@@ -1,8 +1,9 @@
 node {
     stage('CI') {
-        sh "rm -rf *"
-        sh "git clone https://github.com/neatphar/jenkins-dockerized-nodejs-app.git ."
-        sh "git checkout scripted"
+        sh "git init"
+        sh "git remote add origin https://github.com/neatphar/jenkins-dockerized-nodejs-app.git ."
+        sh "git fetch"
+        sh "git checkout origin/scripted -ft"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh 'docker build -t neatphar/nodejs-app .'
             sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
