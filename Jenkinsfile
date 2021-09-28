@@ -1,5 +1,7 @@
 node {
     stage('CI') {
+        sh "git clone https://github.com/neatphar/jenkins-dockerized-nodejs-app.git ."
+        sh "git checkout scripted"
         sh "ls"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh 'docker build -t neatphar/nodejs-app .'
