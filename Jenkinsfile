@@ -11,7 +11,7 @@ node {
         }
     }
     stage('CD') {
-        sh 'docker rm --force NodeJsApp 2>> /dev/null'
-        sh 'docker run --name NodeJsApp -d -p 4000:4000 neatphar/nodejs-app'
+        sh 'docker rm --force NodeJsApp2 2>> /dev/null'
+        sh 'docker run --name NodeJsApp2 -d -p 4000:4000 neatphar/nodejs-app'
     }
 }
