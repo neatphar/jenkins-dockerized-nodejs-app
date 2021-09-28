@@ -1,7 +1,7 @@
 node {
     stage('CI') {
         sh "git init"
-        sh "git remote add origin https://github.com/neatphar/jenkins-dockerized-nodejs-app.git 2>> /dev/null"
+        sh "git remote set-url origin https://github.com/neatphar/jenkins-dockerized-nodejs-app.git 2>> /dev/null"
         sh "git fetch"
         sh "git checkout origin/scripted -ft"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
