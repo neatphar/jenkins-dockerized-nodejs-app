@@ -1,5 +1,6 @@
 node {
     stage('CI') {
+        sh "rm *"
         sh "git clone https://github.com/neatphar/jenkins-dockerized-nodejs-app.git ."
         sh "git checkout scripted"
         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
