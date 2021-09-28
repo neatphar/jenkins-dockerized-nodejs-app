@@ -4,26 +4,21 @@ pipeline {
     stages {
         stage('CI') {
             steps {
-                sh "ls"
-                sh "echo 'hi';"
-                // Get some code from a GitHub repository
-                // git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-
-                // Run Maven on a Unix agent.
-                // sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh """
+                    docker build -t neatphar/nodejs-app .
+                    docker login -u ${USERNAME} -p ${PASSWORD}
+                    docker push
+                """
             }
-
-            // post {
-            //     // If Maven was able to run the tests, even if some of the test
-            //     // failed, record the test results and archive the jar file.
-            //     success {
-            //         junit '**/target/surefire-reports/TEST-*.xml'
-            //         archiveArtifacts 'target/*.jar'
-            //     }
-            // }
+        }
+        stage('CD') {
+            steps {
+                sh """
+                    docker rm --force NodeJsApp 2>> /dev/null
+                    docker run --name NodeJsApp -d -p 3030:3030 neatphar/nodejs-app
+                """
+            }
         }
     }
 }
