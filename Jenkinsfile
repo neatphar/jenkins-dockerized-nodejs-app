@@ -20,6 +20,6 @@ pipeline {
                     docker run --name NodeJsApp -d -p 3000:3000 neatphar/nodejs-app
                 """
             }
-        }
+        } 
     }
 }
